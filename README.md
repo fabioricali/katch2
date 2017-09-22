@@ -1,6 +1,6 @@
 <div align="center">
 <br/><br/>
-<h1>katch2</h1>
+<h1>iog</h1>
 <br/><br/>
 Capture errors and log it. Works both server and browser.
 <br/><br/>
