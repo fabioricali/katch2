@@ -15,10 +15,10 @@ const DEFAULT_OPTS = {
     }
 };
 
-function Katch(opts = {}) {
+function Iog(opts = {}) {
 
-    if (!(this instanceof Katch)){
-        return new Katch(opts);
+    if (!(this instanceof Iog)){
+        return new Iog(opts);
     }
 
     const me = this;
@@ -47,6 +47,6 @@ function Katch(opts = {}) {
         }
 }
 
-Katch.prototype.log = (opts) => {
+Iog.prototype.log = (opts) => {
 
 };
