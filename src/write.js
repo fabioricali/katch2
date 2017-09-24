@@ -1,4 +1,4 @@
-const Helpers = require('./helpers');
+const helper = require('./helpers');
 const sha256 = require('./lib/sha256');
 const fs = require('fs');
 const mkdirp = require('mkdirp');
@@ -13,16 +13,16 @@ const os = require('os');
 module.exports = (logObj, config, callback) => {
 
     // Add time and hash to log object
-    logObj.time = Helpers.getLocaleISODate();
+    logObj.time = helper.getLocaleISODate();
     logObj.hash = sha256(logObj.message);
 
-    if (Helpers.isBrowser()) {
+    if (helper.isBrowser()) {
 
         logObj.useragent = navigator.userAgent;
         /* istanbul ignore else  */
         if(config.logging) {
-            let logName = 'katch';
-            let logDayKey = Helpers.getLocaleISODate('date');
+            let logName = 'iog';
+            let logDayKey = helper.getLocaleISODate('date');
             let logAtDay = JSON.parse(localStorage.getItem(logName)) || {};
 
             /* istanbul ignore else  */
@@ -40,7 +40,7 @@ module.exports = (logObj, config, callback) => {
         }
     } else {
 
-        let filename = Helpers.getLocaleISODate('date') + '.log';
+        let filename = helper.getLocaleISODate('date') + '.log';
         let folderPath = config.writeFile.folderPath;
         let fileContent = '';
         let prefix = config.writeFile.prefix;
