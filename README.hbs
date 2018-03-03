@@ -1,4 +1,4 @@
-#iog
+# iog
 Save your logs on disk, so simply.
 <br/><br/>
 <a href="https://travis-ci.org/fabioricali/iog" target="_blank"><img src="https://travis-ci.org/fabioricali/iog.svg?branch=master" title="Build Status"/></a>
