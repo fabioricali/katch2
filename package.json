@@ -1,6 +1,6 @@
 {
     "name": "iog",
-    "version": "0.0.0",
+    "version": "1.0.0",
     "description": "Save your logs on disk, so simply.",
     "main": "index.js",
     "scripts": {
