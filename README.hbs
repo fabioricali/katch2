@@ -1,0 +1,81 @@
+#iog
+Save your logs on disk, so simply.
+<br/><br/>
+<a href="https://travis-ci.org/fabioricali/iog" target="_blank"><img src="https://travis-ci.org/fabioricali/iog.svg?branch=master" title="Build Status"/></a>
+<a href="https://opensource.org/licenses/MIT" target="_blank"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" title="License: MIT"/></a>
+
+## Installation
+```
+npm install --save iog
+```
+
+## Example
+```javascript
+const Iog = require('iog');
+
+const logger = new Iog('my-module-name');
+
+logger.write('my log info');
+logger.write({
+    also: {
+        you: 'want, for example an object'
+    }
+});
+```
+
+## Log format
+
+this produces
+```javascript
+logger.write('my log info');
+```
+this
+```
+CONTEXT: my-module-name
+DATE: 2018-03-03 20:14:12:367
+TYPE: log
+BODY:
+
+my log info
+
+---------------------------------------------------------------------------------------
+```
+
+this produces
+```javascript
+
+let obj = {
+    error: "undefine is not defined",
+    other: {
+        meta: "a meta"
+    }
+};
+
+logger.write(obj);
+```
+this
+```
+CONTEXT: my-module-name
+DATE: 2018-03-03 20:14:12:367
+TYPE: log
+BODY:
+
+{
+    "error": "undefine is not defined",
+    "other": {
+        "meta": "a meta"
+    }
+}
+
+---------------------------------------------------------------------------------------
+```
+
+## API
+
+{{>main}}
+
+## License
+iog is open-sourced software licensed under the <a target="_blank" href="http://opensource.org/licenses/MIT">MIT license</a>
+
+## Author
+<a target="_blank" href="http://rica.li">Fabio Ricali</a>

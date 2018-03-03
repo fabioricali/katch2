@@ -1,13 +1,41 @@
-const Iog = require('../src/iog');
 const be = require('bejs');
+const Iog = require('../');
 
-describe('logger', function () {
-    this.timeout(5000);
+describe('iog', function () {
 
-    it('error', function () {
-        const logger = Iog();
-        console.log(logger);
-        logger.error(new Error('aaaaaa'));
+    describe('save', function () {
+        it('should be ok with string message', async function () {
+            let log = new Iog('a-context', {
+                path: __dirname
+            });
+            log.write('my log');
+        });
+        it('should be ok with error', async function () {
+            let log = new Iog('a-context', {
+                path: __dirname
+            });
+            try {
+                undefine.param = 'hello';
+            } catch(e) {
+                log.write(e);
+            }
 
-    })
+        });
+        it('should be ok passing an object', async function () {
+            let log = new Iog('a-context', {
+                path: __dirname
+            });
+            try {
+                undefine.param = 'hello';
+            } catch(e) {
+                log.write({
+                    error: e.message,
+                    other: {
+                        meta: 'a meta'
+                    }
+                });
+            }
+
+        });
+    });
 });
