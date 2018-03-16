@@ -4,8 +4,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+[1.1.0] - 2018-03-16
+- **Added** `pause` and `resume` methods
+
 [1.0.1] - 2018-03-04
-- Fixed git url
+- **Fixed** git url
 
 [1.0.0] - 2018-03-03
 - First release
