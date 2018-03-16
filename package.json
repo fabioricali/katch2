@@ -39,6 +39,7 @@
         "dateformat": "^2.2.0",
         "defaulty": "^1.2.2",
         "is-error": "^2.2.1",
-        "mkdirp": "^0.5.1"
+        "mkdirp": "^0.5.1",
+        "stringme": "^1.1.1"
     }
 }

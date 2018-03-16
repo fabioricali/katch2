@@ -3,6 +3,7 @@ const mkdirp = require('mkdirp');
 const dateFormat = require('dateformat');
 const fs = require('fs');
 const isError = require('is-error');
+const stringify = require('stringme');
 
 /**
  * @typedef SEPARATOR
@@ -38,11 +39,31 @@ class Iog {
             console: true
         });
 
+        this._paused = false;
+
         if (this.opts.path) {
             mkdirp.sync(this.opts.path);
         }
 
         this.filePath = `${this.opts.path}/${this.contextName}${this.opts.logExt}`
+    }
+
+    /**
+     * Pause log writing
+     * @returns {Iog}
+     */
+    pause() {
+        this._paused = true;
+        return this;
+    }
+
+    /**
+     * Resume log writing
+     * @returns {Iog}
+     */
+    resume() {
+        this._paused = false;
+        return this;
     }
 
     /**
@@ -53,8 +74,10 @@ class Iog {
      */
     write(msg = '', type = 'log', show = true) {
 
+        if (this._paused) return;
+
         if (typeof msg === 'object' && !isError(msg))
-            msg = JSON.stringify(msg, null, 2);
+            msg = stringify(msg,{replace: null, space: 2});
 
         const now = new Date();
 
