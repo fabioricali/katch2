@@ -79,6 +79,8 @@ BODY:
 
 * [Iog](#Iog)
     * [new Iog(contextName, [opts])](#new_Iog_new)
+    * [.pause()](#Iog+pause) ⇒ [<code>Iog</code>](#Iog)
+    * [.resume()](#Iog+resume) ⇒ [<code>Iog</code>](#Iog)
     * [.write(msg, [type], [show])](#Iog+write)
     * [.error(msg)](#Iog+error)
     * [.warn(msg)](#Iog+warn)
@@ -118,6 +120,18 @@ Iog instance
     </tr>  </tbody>
 </table>
 
+<a name="Iog+pause"></a>
+
+### iog.pause() ⇒ [<code>Iog</code>](#Iog)
+Pause log writing
+
+**Kind**: instance method of [<code>Iog</code>](#Iog)  
+<a name="Iog+resume"></a>
+
+### iog.resume() ⇒ [<code>Iog</code>](#Iog)
+Resume log writing
+
+**Kind**: instance method of [<code>Iog</code>](#Iog)  
 <a name="Iog+write"></a>
 
 ### iog.write(msg, [type], [show])
