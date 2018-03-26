@@ -241,7 +241,7 @@ A wrapper of write that set type to "trace"
 
 
 ## License
-iog is open-sourced software licensed under the <a target="_blank" href="http://opensource.org/licenses/MIT">MIT license</a>
+Iog is open-sourced software licensed under the <a target="_blank" href="http://opensource.org/licenses/MIT">MIT license</a>
 
 ## Author
 <a target="_blank" href="http://rica.li">Fabio Ricali</a>
