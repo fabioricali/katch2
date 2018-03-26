@@ -5,6 +5,7 @@ const fs = require('fs');
 const isError = require('is-error');
 const stringify = require('stringme');
 const path = require('path');
+const findRemoveSync = require('find-remove');
 
 /**
  * @typedef SEPARATOR
@@ -12,6 +13,7 @@ const path = require('path');
  * @ignore
  */
 const SEPARATOR = '\n\n---------------------------------------------------------------------------------------\n\n';
+const DAY_SECONDS = 86400;
 
 /**
  * @class
@@ -27,6 +29,7 @@ class Iog {
      * @param {string} [opts.separator=---] log separator
      * @param {boolean} [opts.console=true] show log in console
      * @param {boolean} [opts.rotation=false] actives rotation log by date
+     * @param {number} [opts.deleteAge=0] delete old log in days
      */
     constructor(contextName, opts = {}) {
 
@@ -39,19 +42,39 @@ class Iog {
             logExt: '.log',
             separator: SEPARATOR,
             console: true,
-            rotation: false
+            rotation: false,
+            deleteAge: 0
         });
 
         this._paused = false;
 
         if (this.opts.rotation) {
             this.opts.path = path.resolve(this.opts.path, this.contextName);
+            if (this.opts.deleteAge) {
+                this._clear();
+            }
         }
 
         if (this.opts.path) {
             mkdirp.sync(this.opts.path);
         }
 
+    }
+
+    /**
+     * Delete old log file
+     * @ignore
+     * @private
+     */
+    _clear() {
+        findRemoveSync(this.opts.path, {
+            age: {seconds: this.opts.deleteAge * DAY_SECONDS},
+            extensions: [this.opts.logExt]
+        });
+
+        setTimeout(()=>{
+            this._clear()
+        }, DAY_SECONDS);
     }
 
     /**
