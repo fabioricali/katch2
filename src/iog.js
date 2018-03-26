@@ -29,7 +29,7 @@ class Iog {
      * @param {string} [opts.separator=---] log separator
      * @param {boolean} [opts.console=true] show log in console
      * @param {boolean} [opts.rotation=false] actives rotation log by date
-     * @param {number} [opts.deleteAge=0] delete old log in days
+     * @param {number} [opts.deleteAge=0] delete old log in days, works only if `rotation` is true
      */
     constructor(contextName, opts = {}) {
 
@@ -62,7 +62,7 @@ class Iog {
     }
 
     /**
-     * Delete old log file
+     * Delete old log file, checks every day
      * @ignore
      * @private
      */
