@@ -117,6 +117,12 @@ Iog instance
     </tr><tr>
     <td>[opts.console]</td><td><code>boolean</code></td><td><code>true</code></td><td><p>show log in console</p>
 </td>
+    </tr><tr>
+    <td>[opts.rotation]</td><td><code>boolean</code></td><td><code>false</code></td><td><p>actives rotation log by date</p>
+</td>
+    </tr><tr>
+    <td>[opts.deleteAge]</td><td><code>number</code></td><td><code>0</code></td><td><p>delete old log in days, works only if <code>rotation</code> is true</p>
+</td>
     </tr>  </tbody>
 </table>
 
