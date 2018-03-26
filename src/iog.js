@@ -4,6 +4,7 @@ const dateFormat = require('dateformat');
 const fs = require('fs');
 const isError = require('is-error');
 const stringify = require('stringme');
+const path = require('path');
 
 /**
  * @typedef SEPARATOR
@@ -25,6 +26,7 @@ class Iog {
      * @param {string} [opts.logExt=.log] log file extension
      * @param {string} [opts.separator=---] log separator
      * @param {boolean} [opts.console=true] show log in console
+     * @param {boolean} [opts.rotation=false] actives rotation log by date
      */
     constructor(contextName, opts = {}) {
 
@@ -36,16 +38,34 @@ class Iog {
             path: '',
             logExt: '.log',
             separator: SEPARATOR,
-            console: true
+            console: true,
+            rotation: false
         });
 
         this._paused = false;
+
+        if (this.opts.rotation) {
+            this.opts.path = path.resolve(this.opts.path, this.contextName);
+        }
 
         if (this.opts.path) {
             mkdirp.sync(this.opts.path);
         }
 
-        this.filePath = `${this.opts.path}/${this.contextName}${this.opts.logExt}`
+    }
+
+    /**
+     * Get right file path
+     * @ignore
+     * @private
+     * @returns {string}
+     */
+    _filePath() {
+        const fileName = this.opts.rotation
+            ? dateFormat(new Date(), 'yyyy-mm-dd')
+            : this.contextName;
+
+        return `${this.opts.path}/${fileName}${this.opts.logExt}`
     }
 
     /**
@@ -77,7 +97,7 @@ class Iog {
         if (this._paused) return;
 
         if (typeof msg === 'object' && !isError(msg))
-            msg = stringify(msg,{replace: null, space: 2});
+            msg = stringify(msg, {replace: null, space: 2});
 
         const now = new Date();
 
@@ -89,7 +109,7 @@ class Iog {
             console[type in console ? type : 'log'](body);
         }
 
-        fs.appendFile(this.filePath, body, (err) => {
+        fs.appendFile(this._filePath(), body, (err) => {
             if (err) throw err;
         });
     }

@@ -35,7 +35,22 @@ describe('iog', function () {
                     }
                 });
             }
-
+        });
+        it('should be ok rotation', async function () {
+            let log = new Iog('a-context', {
+                path: __dirname,
+                rotation: true
+            });
+            try {
+                undefine.param = 'hello';
+            } catch(e) {
+                log.write({
+                    error: e.message,
+                    other: {
+                        meta: 'a meta'
+                    }
+                });
+            }
         });
     });
 });
