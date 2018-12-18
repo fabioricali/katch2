@@ -1,4 +1,3 @@
-const extend = require('defaulty');
 const mkdirp = require('mkdirp');
 const dateFormat = require('dateformat');
 const fs = require('fs');
@@ -37,7 +36,7 @@ class Iog {
             throw new TypeError('context name is required');
 
         this.contextName = contextName;
-        this.opts = extend(opts, {
+        this.opts = Object.assign(opts, {
             path: '',
             logExt: '.log',
             separator: SEPARATOR,

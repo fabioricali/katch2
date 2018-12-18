@@ -4,6 +4,9 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+[1.3.1] - 2018-12-18
+- **Fixed** security issue
+
 [1.3.0] - 2018-03-26
 - **Added** new options
     - `rotation`, now you can split logs day by day
