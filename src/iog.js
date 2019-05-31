@@ -36,14 +36,14 @@ class Iog {
             throw new TypeError('context name is required');
 
         this.contextName = contextName;
-        this.opts = Object.assign(opts, {
+        this.opts = Object.assign({
             path: 'log',
             logExt: '.log',
             separator: SEPARATOR,
             console: true,
             rotation: false,
             deleteAge: 0
-        });
+        }, opts);
 
         this._paused = false;
 
