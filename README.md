@@ -123,6 +123,9 @@ Iog instance
     </tr><tr>
     <td>[opts.deleteAge]</td><td><code>number</code></td><td><code>0</code></td><td><p>delete old log in days, works only if <code>rotation</code> is true</p>
 </td>
+    </tr><tr>
+    <td>[opts.slim]</td><td><code>boolean</code></td><td><code>false</code></td><td><p>slim log</p>
+</td>
     </tr>  </tbody>
 </table>
 

@@ -36,6 +36,22 @@ describe('iog', function () {
                 });
             }
         });
+        it('should be ok passing an object, slim mode', async function () {
+            let log = new Iog('a-context-slim', {
+                path: __dirname,
+                slim: true
+            });
+            try {
+                undefine.param = 'hello';
+            } catch(e) {
+                log.write({
+                    error: e.message,
+                    other: {
+                        meta: 'a meta'
+                    }
+                });
+            }
+        });
         it('should be ok rotation', async function () {
             let log = new Iog('a-context', {
                 path: __dirname,

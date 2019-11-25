@@ -29,6 +29,7 @@ class Iog {
      * @param {boolean} [opts.console=true] show log in console
      * @param {boolean} [opts.rotation=false] actives rotation log by date
      * @param {number} [opts.deleteAge=0] delete old log in days, works only if `rotation` is true
+     * @param {boolean} [opts.slim=false] slim log
      */
     constructor(contextName, opts = {}) {
 
@@ -42,7 +43,8 @@ class Iog {
             separator: SEPARATOR,
             console: true,
             rotation: false,
-            deleteAge: 0
+            deleteAge: 0,
+            slim: false
         }, opts);
 
         this._paused = false;
@@ -117,15 +119,24 @@ class Iog {
     write(msg = '', type = 'log', show = true) {
 
         if (this._paused) return;
-
-        if (typeof msg === 'object' && !isError(msg))
-            msg = stringify(msg, {replace: null, space: 2});
-
+        let body = '';
         const now = new Date();
-
         let date = dateFormat(now, 'yyyy-mm-dd HH:MM:ss:l');
 
-        let body = `CONTEXT: ${this.contextName}\nDATE: ${date}\nTYPE: ${type}\nBODY:\n\n${msg}${this.opts.separator}`;
+        if (this.opts.slim) {
+            body = {
+              CONTEXT: this.contextName,
+              DATE: date,
+              TYPE: type,
+              BODY: ''
+            };
+            body.BODY = msg;
+            body = stringify(body);
+        } else {
+            if (typeof msg === 'object' && !isError(msg))
+                msg = stringify(msg, {replace: null, space: 2});
+            body = `CONTEXT: ${this.contextName}\nDATE: ${date}\nTYPE: ${type}\nBODY:\n\n${msg}${this.opts.separator}`;
+        }
 
         if (this.opts.console && show) {
             console[type in console ? type : 'log'](body);
