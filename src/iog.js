@@ -131,7 +131,7 @@ class Iog {
               BODY: ''
             };
             body.BODY = msg;
-            body = stringify(body);
+            body = stringify(body)+'\n';
         } else {
             if (typeof msg === 'object' && !isError(msg))
                 msg = stringify(msg, {replace: null, space: 2});
