@@ -38,7 +38,7 @@ class Iog {
 
         this.contextName = contextName;
         this.opts = Object.assign({
-            path: 'log',
+            path: 'logs',
             logExt: '.log',
             separator: SEPARATOR,
             console: true,
