@@ -13,7 +13,11 @@ npm install --save iog
 ```javascript
 const Iog = require('iog');
 
-const logger = new Iog('my-module-name');
+const logger = new Iog('my-module-name', {
+    onLog(body, type) {
+        console.log(body, type)
+    }
+});
 
 logger.write('my log info');
 logger.write({
@@ -125,6 +129,9 @@ Iog instance
 </td>
     </tr><tr>
     <td>[opts.slim]</td><td><code>boolean</code></td><td><code>false</code></td><td><p>slim log</p>
+</td>
+    </tr><tr>
+    <td>[opts.onLog]</td><td><code>function</code></td><td><code></code></td><td><p>a callback function fired when a log is written</p>
 </td>
     </tr>  </tbody>
 </table>
