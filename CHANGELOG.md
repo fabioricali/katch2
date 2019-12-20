@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+[1.6.0] - 2019-12-20
+- **Added** `onLog` callback option
+- **Changed** default path name from 'log' to 'logs'
+
 [1.5.1] - 2019-11-25
 - **Fixed** new line for `slim` option
 

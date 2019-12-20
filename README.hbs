@@ -13,7 +13,11 @@ npm install --save iog
 ```javascript
 const Iog = require('iog');
 
-const logger = new Iog('my-module-name');
+const logger = new Iog('my-module-name', {
+    onLog(body, type) {
+        console.log(body, type)
+    }
+});
 
 logger.write('my log info');
 logger.write({

@@ -21,6 +21,33 @@ describe('iog', function () {
             }
 
         });
+        it('should be ok with error 2', async function () {
+            let log = new Iog('a-context', {
+                path: __dirname
+            });
+            try {
+                throw new Error('wow boom');
+            } catch(e) {
+                log.write(e);
+            }
+
+        });
+        it('should be ok with error with onLog', function (done) {
+            let log = new Iog('a-context', {
+                path: __dirname,
+                onLog(body, type) {
+                    console.log('body:', body);
+                    console.log('type:', type);
+                    done();
+                }
+            });
+            try {
+                throw new Error('wow boom');
+            } catch(e) {
+                log.write(e);
+            }
+
+        });
         it('should be ok passing an object', async function () {
             let log = new Iog('a-context', {
                 path: __dirname

@@ -30,6 +30,7 @@ class Iog {
      * @param {boolean} [opts.rotation=false] actives rotation log by date
      * @param {number} [opts.deleteAge=0] delete old log in days, works only if `rotation` is true
      * @param {boolean} [opts.slim=false] slim log
+     * @param {function} [opts.onLog=null] a callback function fired when a log is written
      */
     constructor(contextName, opts = {}) {
 
@@ -44,7 +45,8 @@ class Iog {
             console: true,
             rotation: false,
             deleteAge: 0,
-            slim: false
+            slim: false,
+            onLog: null
         }, opts);
 
         this._paused = false;
@@ -144,6 +146,10 @@ class Iog {
 
         fs.appendFile(this._filePath(), body, (err) => {
             if (err) throw err;
+
+            if (typeof this.opts.onLog === 'function') {
+                this.opts.onLog(body, type);
+            }
         });
     }
 
